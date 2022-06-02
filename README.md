@@ -1,3 +1,4 @@
 [HackTheBox](https://app.hackthebox.com/profile/542571)
 [OSCP Notes](https://github.com/cuhawk/visualstudio)
 [OSEP Notes](https://github.com/cuhawk/data)
+[STriDER Replication](https://www.romela.org/strider-self-excited-tripedal-dynamic-experimental-robot/)
