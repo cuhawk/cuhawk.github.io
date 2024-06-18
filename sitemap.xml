@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+         <loc>http://blog.cuhawk.co.uk/</loc>
+         <lastmod>2024-06-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://blog.cuhawk.co.uk/blog/</loc>
          <lastmod>2024-06-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://blog.cuhawk.co.uk/blog/2023/12/31/happy-new-years-eve/</loc>
-         <lastmod>2024-06-18</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>http://blog.cuhawk.co.uk/blog/archive/2023/</loc>
+         <loc>http://blog.cuhawk.co.uk/blog/test/</loc>
          <lastmod>2024-06-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
