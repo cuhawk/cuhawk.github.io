@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://blog.cuhawk.co.uk/</loc>
-         <lastmod>2024-06-23</lastmod>
+         <lastmod>2024-06-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://blog.cuhawk.co.uk/pentesting/</loc>
-         <lastmod>2024-06-23</lastmod>
+         <lastmod>2024-06-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://blog.cuhawk.co.uk/programming/</loc>
-         <lastmod>2024-06-23</lastmod>
+         <lastmod>2024-06-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://blog.cuhawk.co.uk/programming/DSA/</loc>
-         <lastmod>2024-06-23</lastmod>
+         <lastmod>2024-06-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
