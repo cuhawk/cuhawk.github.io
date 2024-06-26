@@ -1,0 +1,1477 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Projects Showcase">
+      
+      
+      
+        <link rel="canonical" href="http://blog.cuhawk.co.uk/certifications/oscp/">
+      
+      
+        <link rel="prev" href="../../pentesting/cobalt/">
+      
+      
+        <link rel="next" href="../osep/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>OSCP - Cuhawk's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#my-journey-to-passing-the-oscp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cuhawk&#39;s Blog" class="md-header__button md-logo" aria-label="Cuhawk's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cuhawk's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OSCP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../programming/" class="md-tabs__link">
+          
+  
+  Programming
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pentesting/" class="md-tabs__link">
+          
+  
+  Pentesting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Certifications
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cuhawk&#39;s Blog" class="md-nav__button md-logo" aria-label="Cuhawk's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Cuhawk's Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Programming
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DSA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/DSA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DFS vs BFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Sorting%20Idealogy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sorting Idealogy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Tree%20Use%20Idealogy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tree Use Idealogy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Snake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snake C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Booking%20API%20C%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Booking API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/GameServer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Game Server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Milk%20App%20c%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Milk Storage C#
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pentesting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Pentesting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/Evasion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Evasion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux AD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/relaying/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relaying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/cobalt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cobalt Strike
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Certifications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Certifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OSCP
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    OSCP
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#my-journey-to-passing-the-oscp" class="md-nav__link">
+    <span class="md-ellipsis">
+      My Journey to Passing the OSCP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="My Journey to Passing the OSCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparation-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation Phase
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparation Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-understanding-the-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Understanding the Requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-setting-up-a-study-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Setting Up a Study Plan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#study-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Study Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-offensive-security-pwk-course" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Offensive Security PWK Course
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-supplementary-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Supplementary Resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Practice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-lab-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Lab Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-practice-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Practice Machines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-challenges-and-how-i-overcame-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Challenges and How I Overcame Them
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Challenges and How I Overcame Them">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-time-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Time Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-technical-difficulties" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Technical Difficulties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mental-resilience" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Mental Resilience
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-exam-day" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Exam Day
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Exam Day">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Preparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Strategy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-exam-the-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-Exam: The Report
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tips-for-aspiring-oscp-candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips for Aspiring OSCP Candidates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finally
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../osep/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSEP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CRTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prolabs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTB ProLabs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#my-journey-to-passing-the-oscp" class="md-nav__link">
+    <span class="md-ellipsis">
+      My Journey to Passing the OSCP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="My Journey to Passing the OSCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparation-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation Phase
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparation Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-understanding-the-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Understanding the Requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-setting-up-a-study-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Setting Up a Study Plan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#study-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Study Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-offensive-security-pwk-course" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Offensive Security PWK Course
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-supplementary-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Supplementary Resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Practice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-lab-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Lab Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-practice-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Practice Machines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-challenges-and-how-i-overcame-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Challenges and How I Overcame Them
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Challenges and How I Overcame Them">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-time-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Time Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-technical-difficulties" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Technical Difficulties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mental-resilience" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Mental Resilience
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-exam-day" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Exam Day
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Exam Day">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Preparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Strategy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-exam-the-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-Exam: The Report
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tips-for-aspiring-oscp-candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips for Aspiring OSCP Candidates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finally
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>OSCP</h1>
+
+<h2 id="my-journey-to-passing-the-oscp">My Journey to Passing the OSCP</h2>
+<h3 id="introduction">Introduction</h3>
+<p>The Offensive Security Certified Professional (OSCP) certification is highly regarded in the cybersecurity community. It requires not only technical knowledge but also the ability to think like a hacker. Here, I will detail my journey to passing the OSCP, including preparation, the challenges faced, and tips that helped me succeed.</p>
+<h3 id="preparation-phase">Preparation Phase</h3>
+<h4 id="1-understanding-the-requirements">1. Understanding the Requirements</h4>
+<p>Before diving into the study material, I thoroughly reviewed the OSCP exam objectives. This helped me understand the scope of what I needed to learn and set realistic expectations for myself.</p>
+<h4 id="2-setting-up-a-study-plan">2. Setting Up a Study Plan</h4>
+<p>I created a detailed study plan, allocating specific time slots each day for learning and practice. My plan included:
+- <strong>Weekdays:</strong> 2 hours of study/practice
+- <strong>Weekends:</strong> 4-6 hours of focused practice
+- <strong>Milestones:</strong> Weekly goals to cover specific topics or complete a certain number of practice machines</p>
+<h3 id="study-resources">Study Resources</h3>
+<h4 id="1-offensive-security-pwk-course">1. <strong>Offensive Security PWK Course</strong></h4>
+<p>The Penetration Testing with Kali Linux (PWK) course material provided by Offensive Security was my primary resource. It covered:
+- Information gathering
+- Vulnerability scanning
+- Exploitation
+- Post-exploitation
+- Reporting</p>
+<p>I made sure to go through each module meticulously, completing all exercises and labs provided.</p>
+<h4 id="2-supplementary-resources">2. <strong>Supplementary Resources</strong></h4>
+<p>To reinforce my learning, I used additional resources:
+- <strong>Books:</strong> "The Hacker Playbook" series by Peter Kim, "Metasploit: The Penetration Tester's Guide"
+- <strong>Online Platforms:</strong> Hack The Box, VulnHub
+- <strong>Forums and Blogs:</strong> Offensive Security forums, NetSecFocus OSCP Study Group on Discord</p>
+<h3 id="practical-practice">Practical Practice</h3>
+<h4 id="1-lab-environment">1. <strong>Lab Environment</strong></h4>
+<p>The PWK labs provided by Offensive Security were invaluable. They simulated a real-world network environment with various machines to exploit. I aimed to root as many machines as possible, focusing on understanding different types of vulnerabilities and exploits.</p>
+<h4 id="2-practice-machines">2. <strong>Practice Machines</strong></h4>
+<p>Platforms like Hack The Box and VulnHub offered a variety of machines that mimicked the OSCP exam environment. I practiced extensively on these platforms, ensuring I could exploit machines within the exam’s 24-hour time limit.</p>
+<h3 id="key-challenges-and-how-i-overcame-them">Key Challenges and How I Overcame Them</h3>
+<h4 id="1-time-management">1. <strong>Time Management</strong></h4>
+<p>Balancing study with work and personal life was challenging. I overcame this by:
+- Sticking strictly to my study schedule
+- Breaking down large tasks into smaller, manageable chunks
+- Taking regular breaks to avoid burnout</p>
+<h4 id="2-technical-difficulties">2. <strong>Technical Difficulties</strong></h4>
+<p>Some exploits were particularly challenging. My approach was:
+- Deep diving into the exploit code to understand its workings
+- Researching online for similar vulnerabilities and exploits
+- Seeking help from forums and study groups</p>
+<h4 id="3-mental-resilience">3. <strong>Mental Resilience</strong></h4>
+<p>The journey was mentally taxing. To stay motivated:
+- I kept reminding myself of my end goal
+- Celebrated small victories, like rooting a difficult machine
+- Connected with other OSCP aspirants for mutual support</p>
+<h3 id="the-exam-day">The Exam Day</h3>
+<p>The OSCP exam is a 24-hour practical test where you need to exploit a series of machines to accumulate at least 70 points out of 100.</p>
+<h4 id="1-preparation">1. <strong>Preparation</strong></h4>
+<ul>
+<li>Ensured a stable internet connection</li>
+<li>Had backup plans for technical issues (e.g., multiple ISPs)</li>
+<li>Prepared snacks and drinks to avoid interruptions</li>
+</ul>
+<h4 id="2-strategy">2. <strong>Strategy</strong></h4>
+<ul>
+<li>Started with the easiest machines to secure quick points</li>
+<li>Documented every step meticulously, as the exam requires detailed reporting</li>
+<li>Took short breaks to stay fresh and maintain focus</li>
+</ul>
+<h3 id="post-exam-the-report">Post-Exam: The Report</h3>
+<p>The final step was to submit a detailed report of all exploits used. My report included:
+- Step-by-step documentation of how each machine was exploited
+- Screenshots to support my findings
+- An executive summary and conclusion</p>
+<h3 id="tips-for-aspiring-oscp-candidates">Tips for Aspiring OSCP Candidates</h3>
+<ol>
+<li><strong>Master the Basics:</strong> Strong understanding of TCP/IP, networking, and Linux is crucial.</li>
+<li><strong>Practice, Practice, Practice:</strong> Hands-on experience is key. Use lab environments and platforms like Hack The Box.</li>
+<li><strong>Stay Organized:</strong> Keep notes and document all your learning and practice sessions.</li>
+<li><strong>Join Communities:</strong> Study groups and forums can provide support and valuable insights.</li>
+<li><strong>Don't Give Up:</strong> The journey is tough but rewarding. Persistence is critical.</li>
+</ol>
+<h3 id="finally">Finally</h3>
+<p>Passing the OSCP was a significant milestone in my cybersecurity career. It required dedication, extensive practice, and a strategic approach. By following a structured study plan, leveraging multiple resources, and maintaining resilience, I was able to achieve my goal. I hope my journey provides valuable insights and motivation for others aspiring to earn this prestigious certification. You can verify my certification <a href="https://www.credential.net/b0886d49-adfe-42e1-ba4a-3da31771d09b">HERE</a></p>
+<p><img alt="OSCP" src="../OSCP.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
