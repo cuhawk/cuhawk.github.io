@@ -1,0 +1,1971 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Projects Showcase">
+      
+      
+      
+        <link rel="canonical" href="http://blog.cuhawk.co.uk/programming/Maximize%20shortcut%20nodes/">
+      
+      
+        <link rel="prev" href="../DSA/">
+      
+      
+        <link rel="next" href="../Sorting%20Idealogy/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Max Number of Edges - Cuhawk's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#remove-max-number-of-edges-to-keep-graph-fully-traversable" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cuhawk&#39;s Blog" class="md-header__button md-logo" aria-label="Cuhawk's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cuhawk's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Max Number of Edges
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Programming
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pentesting/" class="md-tabs__link">
+          
+  
+  Pentesting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../certifications/oscp/" class="md-tabs__link">
+          
+  
+  Certifications
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cuhawk&#39;s Blog" class="md-nav__button md-logo" aria-label="Cuhawk's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Cuhawk's Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Programming
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DSA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DSA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DFS vs BFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Max Number of Edges
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Max Number of Edges
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-data-structure-union-find-with-path-compression-and-union-by-ranksize" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Data Structure: Union-Find with Path Compression and Union by Rank/Size
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-handling-of-union-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Handling of Union Operations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-edge-counting-and-connectivity-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Edge Counting and Connectivity Check
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features-of-the-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features of the Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runtime Efficiency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-fixed-size-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Fixed-size Arrays
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-efficient-union-find-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Efficient Union-Find Operations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-avoidance-of-redundant-data-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Avoidance of Redundant Data Structures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-iterative-reinitialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Iterative Reinitialization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-memory-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Memory Efficiency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-aspects-of-the-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Aspects of the Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficiency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sorting%20Idealogy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sorting Idealogy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tree%20Use%20Idealogy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tree Use Idealogy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Snake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snake C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Booking%20API%20C%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Booking API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GameServer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Game Server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Milk%20App%20c%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Milk Storage C#
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pentesting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Pentesting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/Evasion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Evasion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux AD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/relaying/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relaying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/cobalt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cobalt Strike
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Certifications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Certifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/oscp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/osep/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSEP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/crte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CRTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/prolabs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTB ProLabs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-data-structure-union-find-with-path-compression-and-union-by-ranksize" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Data Structure: Union-Find with Path Compression and Union by Rank/Size
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-handling-of-union-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Handling of Union Operations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-edge-counting-and-connectivity-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Edge Counting and Connectivity Check
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features-of-the-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features of the Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runtime Efficiency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-fixed-size-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Fixed-size Arrays
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-efficient-union-find-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Efficient Union-Find Operations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-avoidance-of-redundant-data-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Avoidance of Redundant Data Structures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-iterative-reinitialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Iterative Reinitialization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-memory-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Memory Efficiency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-aspects-of-the-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Aspects of the Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficiency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="remove-max-number-of-edges-to-keep-graph-fully-traversable">Remove Max Number of Edges to Keep Graph Fully Traversable</h1>
+<p>Alice and Bob have an undirected graph of n nodes and three types of edges:</p>
+<p>Type 1: Can be traversed by Alice only.
+Type 2: Can be traversed by Bob only.
+Type 3: Can be traversed by both Alice and Bob.
+Given an array edges where edges[i] = [typei, ui, vi] represents a bidirectional edge of type typei between nodes ui and vi, find the maximum number of edges you can remove so that after removing the edges, the graph can still be fully traversed by both Alice and Bob. The graph is fully traversed by Alice and Bob if starting from any node, they can reach all other nodes.</p>
+<p>Return the maximum number of edges you can remove, or return -1 if Alice and Bob cannot fully traverse the graph.</p>
+<p>Constraints:</p>
+<p>1 &lt;= n &lt;= 105
+1 &lt;= edges.length &lt;= min(105, 3 * n * (n - 1) / 2)
+edges[i].length == 3
+1 &lt;= typei &lt;= 3
+1 &lt;= ui &lt; vi &lt;= n
+All tuples (typei, ui, vi) are distinct.</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">UnionFind</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">representative</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">componentSize</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">components</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">UnionFind</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">components</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">representative</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">            </span><span class="n">componentSize</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">findRepresentative</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">representative</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">representative</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findRepresentative</span><span class="p">(</span><span class="n">representative</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">performUnion</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findRepresentative</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findRepresentative</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">componentSize</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">componentSize</span><span class="p">[</span><span class="n">y</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">componentSize</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">componentSize</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+<span class="w">            </span><span class="n">representative</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">componentSize</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">componentSize</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="w">            </span><span class="n">representative</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">components</span><span class="o">--</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isConnected</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">components</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxNumEdgesToRemove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UnionFind</span><span class="w"> </span><span class="nf">Alice</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">Bob</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">edgesRequired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">edge</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+<span class="w">                </span><span class="n">edgesRequired</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">Alice</span><span class="p">.</span><span class="n">performUnion</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">performUnion</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">edge</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">edgesRequired</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Alice</span><span class="p">.</span><span class="n">performUnion</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="n">edgesRequired</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">performUnion</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Alice</span><span class="p">.</span><span class="n">isConnected</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">isConnected</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">edges</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">edgesRequired</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>runtime efficient solution:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DisjointSet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">DisjointSet</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rank</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">size</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">            </span><span class="n">size</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">findUPar</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">])</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findUPar</span><span class="p">(</span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">unionByRank</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ulp_u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findUPar</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ulp_v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findUPar</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ulp_u</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ulp_v</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">ulp_u</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">ulp_v</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">ulp_u</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ulp_v</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">ulp_v</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">ulp_u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">ulp_v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ulp_u</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">ulp_v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ulp_u</span><span class="p">;</span>
+<span class="w">            </span><span class="n">rank</span><span class="p">[</span><span class="n">ulp_u</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">unionBySize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ulp_u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findUPar</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ulp_v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findUPar</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ulp_u</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ulp_v</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="n">ulp_u</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">[</span><span class="n">ulp_v</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">ulp_u</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ulp_v</span><span class="p">;</span>
+<span class="w">            </span><span class="n">size</span><span class="p">[</span><span class="n">ulp_v</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">size</span><span class="p">[</span><span class="n">ulp_u</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">ulp_v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ulp_u</span><span class="p">;</span>
+<span class="w">            </span><span class="n">size</span><span class="p">[</span><span class="n">ulp_u</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">size</span><span class="p">[</span><span class="n">ulp_v</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxNumEdgesToRemove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">        </span><span class="n">DisjointSet</span><span class="w"> </span><span class="nf">ds1</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">DisjointSet</span><span class="w"> </span><span class="nf">ds2</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">ds1</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ds1</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">                    </span><span class="p">(</span><span class="n">ds2</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ds2</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ds1</span><span class="p">.</span><span class="n">unionByRank</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">                    </span><span class="n">ds2</span><span class="p">.</span><span class="n">unionByRank</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">ds1</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ds1</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ds1</span><span class="p">.</span><span class="n">unionByRank</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">ds2</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ds2</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ds2</span><span class="p">.</span><span class="n">unionByRank</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ct1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ct2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">ds1</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">==</span><span class="n">i</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">ct1</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">ds2</span><span class="p">.</span><span class="n">findUPar</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">==</span><span class="n">i</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">ct2</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">ct1</span><span class="o">&gt;</span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ct2</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">cnt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The second implementation of the solution is considered more efficient than the first due to several reasons related to the data structures used and the specific optimizations applied. Here's a detailed comparison of the key differences and why they contribute to the efficiency:</p>
+<h3 id="1-data-structure-union-find-with-path-compression-and-union-by-ranksize">1. Data Structure: Union-Find with Path Compression and Union by Rank/Size</h3>
+<p><strong>First Implementation (UnionFind Class):</strong>
+- Uses a straightforward Union-Find data structure with path compression and union by size.
+- Path compression optimizes the <code>findRepresentative</code> method by making nodes point directly to the root representative, reducing the time complexity for future queries.
+- Union by size ensures that the smaller tree is always merged into the larger tree, balancing the tree height and improving efficiency.</p>
+<p><strong>Second Implementation (DisjointSet Class):</strong>
+- Enhances the Union-Find data structure by using both union by rank and union by size, providing flexibility and ensuring optimal tree balancing.
+- The use of <code>rank</code> ensures that the tree height remains logarithmic, further optimizing the union operation.
+- Path compression is also applied in the <code>findUPar</code> method, similar to the first implementation, but with the addition of rank-based optimization, it is slightly more efficient.</p>
+<h3 id="2-handling-of-union-operations">2. Handling of Union Operations</h3>
+<p><strong>First Implementation:</strong>
+- Separately performs union operations for Alice and Bob using the <code>performUnion</code> method.
+- Checks for the edge type (1 for Alice, 2 for Bob, 3 for both) and applies union operations accordingly.
+- The union operations are done sequentially, which might lead to repetitive checks and operations.</p>
+<p><strong>Second Implementation:</strong>
+- Combines the union operations for both Alice and Bob more efficiently by checking the type of edge once and applying the union operations using rank.
+- Uses a single loop to handle type 3 edges first, ensuring both Alice and Bob's sets are updated simultaneously, reducing redundant operations.
+- Additional loops for type 1 and type 2 edges ensure specific union operations for Alice and Bob without redundant checks.</p>
+<h3 id="3-edge-counting-and-connectivity-check">3. Edge Counting and Connectivity Check</h3>
+<p><strong>First Implementation:</strong>
+- Uses the <code>components</code> variable to keep track of the number of components and checks connectivity with <code>isConnected</code>.
+- Manages the number of required edges separately for Alice and Bob, leading to a slightly more complex counting mechanism.</p>
+<p><strong>Second Implementation:</strong>
+- Directly counts redundant edges (<code>cnt</code>) during the union operations, simplifying the edge counting process.
+- After processing all edges, it checks the number of connected components by counting unique parents in both sets, ensuring both Alice and Bob are fully connected.
+- This approach simplifies the final connectivity check and reduces the number of operations needed.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>The second implementation is more efficient primarily due to:
+- The use of both union by rank and union by size, which provides better tree balancing and reduces the height of the trees.
+- A more streamlined process for handling union operations, especially for type 3 edges, reducing redundant operations and checks.
+- Simplified edge counting and connectivity check, which reduces the complexity and number of operations.</p>
+<p>These optimizations lead to faster execution times, especially for larger inputs, making the second implementation more efficient.</p>
+<p>Runtime efficient 2:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DisjointSet</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span><span class="w"> </span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">parent</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rank</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">DisjointSet</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rank</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">getUltParent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">node</span><span class="p">){</span>
+<span class="w">        </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">];</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">]){</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">]];</span>
+<span class="w">            </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">unionByRank</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n2</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getUltParent</span><span class="p">(</span><span class="n">n1</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getUltParent</span><span class="p">(</span><span class="n">n2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p2</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">rank1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">p1</span><span class="p">];</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">rank2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">p2</span><span class="p">];</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rank2</span><span class="p">){</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="p">;</span>
+<span class="w">            </span><span class="n">rank</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">rank2</span><span class="p">){</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="p">{</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p2</span><span class="p">;</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isConnectedGraph</span><span class="p">(</span><span class="n">DisjointSet</span><span class="w"> </span><span class="o">*</span><span class="n">ds</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ds</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">numComponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ds</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="n">numComponents</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">numComponents</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">setInsert</span><span class="p">(</span><span class="n">DisjointSet</span><span class="w"> </span><span class="o">*</span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edgeType</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">edge</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">edges</span><span class="p">){</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">edgeType</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ds</span><span class="o">-&gt;</span><span class="n">unionByRank</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">){</span>
+<span class="w">                </span><span class="n">numRemovals</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">numRemovals</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxNumEdgesToRemove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DisjointSet</span><span class="w"> </span><span class="o">*</span><span class="n">Alice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DisjointSet</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">        </span><span class="n">DisjointSet</span><span class="w"> </span><span class="o">*</span><span class="n">Bob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DisjointSet</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">setInsert</span><span class="p">(</span><span class="n">Alice</span><span class="p">,</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="w">        </span><span class="n">setInsert</span><span class="p">(</span><span class="n">Bob</span><span class="p">,</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">setInsert</span><span class="p">(</span><span class="n">Alice</span><span class="p">,</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">setInsert</span><span class="p">(</span><span class="n">Bob</span><span class="p">,</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isConnectedGraph</span><span class="p">(</span><span class="n">Alice</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">isConnectedGraph</span><span class="p">(</span><span class="n">Bob</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">numRemovals</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The provided implementation of the <code>Solution</code> class leverages a Disjoint Set Union (DSU) structure to solve the problem efficiently. Here’s an analysis of its runtime efficiency:</p>
+<h3 id="key-features-of-the-implementation">Key Features of the Implementation</h3>
+<ol>
+<li><strong>DisjointSet Class</strong>:</li>
+<li>
+<p><strong>Initialization</strong>:
+     <div class="highlight"><pre><span></span><code><span class="n">DisjointSet</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+<span class="w">    </span><span class="n">parent</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rank</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+     The DSU is initialized with <code>parent</code> and <code>rank</code> vectors, ensuring all nodes are their own parents initially, and all ranks are set to zero.</p>
+</li>
+<li>
+<p><strong>Find with Path Compression</strong>:
+     <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">getUltParent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">node</span><span class="p">){</span>
+<span class="w">    </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">];</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">]){</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">]];</span>
+<span class="w">        </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+     The <code>getUltParent</code> method uses path compression to keep the tree flat, which ensures that future <code>find</code> operations are fast.</p>
+</li>
+<li>
+<p><strong>Union by Rank</strong>:
+     <div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">unionByRank</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n2</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getUltParent</span><span class="p">(</span><span class="n">n1</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getUltParent</span><span class="p">(</span><span class="n">n2</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p2</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">p2</span><span class="p">]){</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">rank</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">p2</span><span class="p">]){</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p2</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+     The <code>unionByRank</code> method merges two sets by their rank, which ensures the smaller tree is added under the root of the larger tree, maintaining balance.</p>
+</li>
+<li>
+<p><strong>Solution Class</strong>:</p>
+</li>
+<li>
+<p><strong>Edge Processing</strong>:
+     <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">setInsert</span><span class="p">(</span><span class="n">DisjointSet</span><span class="w"> </span><span class="o">*</span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edgeType</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">edge</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">edges</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">edgeType</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ds</span><span class="o">-&gt;</span><span class="n">unionByRank</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">){</span>
+<span class="w">            </span><span class="n">numRemovals</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">numRemovals</span><span class="p">;</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
+     The <code>setInsert</code> method processes edges of a particular type and tries to merge the sets. If the sets are already connected, it counts the edge as redundant.</p>
+</li>
+<li>
+<p><strong>Connectivity Check</strong>:
+     <div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">isConnectedGraph</span><span class="p">(</span><span class="n">DisjointSet</span><span class="w"> </span><span class="o">*</span><span class="n">ds</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ds</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">numComponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ds</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="n">numComponents</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">numComponents</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+     The <code>isConnectedGraph</code> method checks if there is exactly one connected component, meaning the graph is fully connected.</p>
+</li>
+<li>
+<p><strong>Main Logic</strong>:
+     <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">maxNumEdgesToRemove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DisjointSet</span><span class="w"> </span><span class="o">*</span><span class="n">Alice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DisjointSet</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">    </span><span class="n">DisjointSet</span><span class="w"> </span><span class="o">*</span><span class="n">Bob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DisjointSet</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">setInsert</span><span class="p">(</span><span class="n">Alice</span><span class="p">,</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">setInsert</span><span class="p">(</span><span class="n">Bob</span><span class="p">,</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">setInsert</span><span class="p">(</span><span class="n">Alice</span><span class="p">,</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">numRemovals</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">setInsert</span><span class="p">(</span><span class="n">Bob</span><span class="p">,</span><span class="w"> </span><span class="n">edges</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isConnectedGraph</span><span class="p">(</span><span class="n">Alice</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">isConnectedGraph</span><span class="p">(</span><span class="n">Bob</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">numRemovals</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="runtime-efficiency">Runtime Efficiency</h3>
+<ul>
+<li><strong>Time Complexity</strong>:</li>
+<li><strong>Initialization</strong>: Initializing the DSU structures takes O(n) time.</li>
+<li><strong>Sorting</strong>: Sorting the edges takes O(m log m) time, where m is the number of edges.</li>
+<li><strong>Edge Processing</strong>: Processing each edge involves <code>find</code> and <code>union</code> operations, both of which are nearly constant time, i.e., O(α(n)), where α is the inverse Ackermann function, which is very slow-growing. Since each edge is processed at most once, this part takes O(m α(n)) time.</li>
+</ul>
+<p>The overall time complexity is dominated by the sorting step, so it is O(m log m + m α(n)). Given that α(n) is very small, it is effectively O(m log m).</p>
+<ul>
+<li><strong>Space Complexity</strong>:</li>
+<li>The space complexity is O(n) for the <code>parent</code> and <code>rank</code> vectors in each DSU instance, resulting in a total of O(n) space for each Alice and Bob structures.</li>
+</ul>
+<h3 id="conclusion_1">Conclusion</h3>
+<p>The solution is efficient in terms of both time and space. The use of DSU with path compression and union by rank ensures that operations are nearly constant time. The edge processing logic is streamlined by sorting and categorizing edges, ensuring that redundant edges are identified efficiently. The early termination check for connectivity further optimizes the runtime by potentially reducing unnecessary computations.</p>
+<p>Memory Efficient:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="mi">100001</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">[</span><span class="mi">100001</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">make</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">){</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="n">v</span><span class="p">;</span>
+<span class="w">        </span><span class="n">size</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">==</span><span class="n">parent</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="n">find</span><span class="p">(</span><span class="n">parent</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">){</span>
+<span class="w">        </span><span class="n">a</span><span class="o">=</span><span class="n">find</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="w">        </span><span class="n">b</span><span class="o">=</span><span class="n">find</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">&gt;</span><span class="n">size</span><span class="p">[</span><span class="n">a</span><span class="p">])</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+<span class="w">        </span><span class="n">size</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">+=</span><span class="n">size</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">maxNumEdgesToRemove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sort</span><span class="p">(</span><span class="n">edges</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">edges</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="w">        </span><span class="n">reverse</span><span class="p">(</span><span class="n">edges</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">edges</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">make</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">edges</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="o">==</span><span class="mi">3</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">t</span><span class="o">==</span><span class="mi">2</span><span class="p">){</span>
+<span class="w">                </span><span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="o">=</span><span class="n">merge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">!=</span><span class="n">find</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">make</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">edges</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">                </span><span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="o">=</span><span class="n">merge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="o">==</span><span class="mi">3</span><span class="p">){</span>
+<span class="w">                </span><span class="n">merge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">!=</span><span class="n">find</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The given implementation of the <code>Solution</code> class is designed to be more memory efficient due to several key reasons:</p>
+<h3 id="1-fixed-size-arrays">1. Fixed-size Arrays</h3>
+<p>The <code>parent</code> and <code>size</code> arrays are declared with a fixed size of 100001:
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="mi">100001</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">[</span><span class="mi">100001</span><span class="p">];</span>
+</code></pre></div>
+This ensures that memory allocation happens only once and avoids the overhead associated with dynamic memory allocation using <code>std::vector</code>.</p>
+<h3 id="2-efficient-union-find-operations">2. Efficient Union-Find Operations</h3>
+<p>The union-find operations (<code>find</code>, <code>make</code>, and <code>merge</code>) are implemented with path compression and union by size, which are both memory-efficient operations:
+- <strong>Path Compression:</strong> This technique ensures that the tree height remains small, which speeds up future operations and reduces the overall memory footprint required for tree traversal.
+- <strong>Union by Size:</strong> By always attaching the smaller tree under the root of the larger tree, the height of the trees remains balanced, ensuring that the depth of any node is logarithmic with respect to the number of nodes, reducing the overall memory usage.</p>
+<h3 id="3-avoidance-of-redundant-data-structures">3. Avoidance of Redundant Data Structures</h3>
+<p>Unlike some implementations which might use multiple union-find data structures for Alice and Bob separately, this implementation uses a single union-find structure, reusing it efficiently to avoid redundant memory usage:
+- <strong>Single Union-Find Structure:</strong> The same <code>parent</code> and <code>size</code> arrays are reused for both types of edges (type 2 and type 3 for Bob first, then type 1 and type 3 for Alice), reducing the memory footprint by not requiring separate structures.</p>
+<h3 id="4-iterative-reinitialization">4. Iterative Reinitialization</h3>
+<p>The reinitialization of the union-find structure for the second pass (for Alice) is done in-place by reusing the same arrays:
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="n">make</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+This approach avoids the need to create additional arrays or copies of the data, ensuring that the memory usage remains minimal.</p>
+<h3 id="summary-of-memory-efficiency">Summary of Memory Efficiency</h3>
+<ul>
+<li><strong>Fixed-size arrays</strong> prevent the overhead of dynamic memory allocation.</li>
+<li><strong>Path compression and union by size</strong> ensure efficient memory usage in union-find operations.</li>
+<li><strong>Reusing the same union-find structure</strong> for both types of edges reduces redundant memory allocation.</li>
+<li><strong>In-place reinitialization</strong> of the union-find structure further minimizes memory overhead.</li>
+</ul>
+<p>Overall, the combination of these techniques ensures that the solution is both time-efficient and memory-efficient, making it suitable for handling large inputs within the constraints typically found in competitive programming or interview scenarios.</p>
+<p>Mempry Efficient 2:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">DSU</span><span class="p">{</span>
+<span class="w">        </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">parent</span><span class="p">;</span>
+<span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rank</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">components</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">DSU</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+<span class="w">            </span><span class="n">parent</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">                </span><span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">rank</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">            </span><span class="n">components</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span><span class="w"> </span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="n">Union</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">x_parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">y_parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x_parent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y_parent</span><span class="p">)</span><span class="w"> </span>
+<span class="w">                </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">x_parent</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">y_parent</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">parent</span><span class="p">[</span><span class="n">y_parent</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_parent</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">x_parent</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">y_parent</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">parent</span><span class="p">[</span><span class="n">x_parent</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_parent</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">parent</span><span class="p">[</span><span class="n">x_parent</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_parent</span><span class="p">;</span>
+<span class="w">                </span><span class="n">rank</span><span class="p">[</span><span class="n">y_parent</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">components</span><span class="o">--</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">isSingleComponent</span><span class="p">(){</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">components</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">maxNumEdgesToRemove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DSU</span><span class="w"> </span><span class="n">Alice</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">        </span><span class="n">DSU</span><span class="w"> </span><span class="n">Bob</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="n">vec1</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="n">vec2</span><span class="p">){</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">vec1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec2</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">        </span><span class="p">};</span><span class="w"> </span>
+<span class="w">        </span><span class="n">sort</span><span class="p">(</span><span class="n">begin</span><span class="p">(</span><span class="n">edges</span><span class="p">),</span><span class="n">end</span><span class="p">(</span><span class="n">edges</span><span class="p">),</span><span class="n">lambda</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">edgeCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vec</span><span class="o">:</span><span class="n">edges</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">){</span>
+<span class="w">                </span><span class="kt">bool</span><span class="w"> </span><span class="n">addEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">Alice</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Alice</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)){</span>
+<span class="w">                    </span><span class="n">Alice</span><span class="p">.</span><span class="n">Union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">addEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">Bob</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)){</span>
+<span class="w">                    </span><span class="n">Bob</span><span class="p">.</span><span class="n">Union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">addEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">addEdge</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="n">edgeCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">){</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">Bob</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)){</span>
+<span class="w">                    </span><span class="n">Bob</span><span class="p">.</span><span class="n">Union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">edgeCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">Alice</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Alice</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)){</span>
+<span class="w">                    </span><span class="n">Alice</span><span class="p">.</span><span class="n">Union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">edgeCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">Alice</span><span class="p">.</span><span class="n">isSingleComponent</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">isSingleComponent</span><span class="p">()){</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">edges</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">edgeCount</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The given implementation of the <code>Solution</code> class, utilizing the Disjoint Set Union (DSU) data structure, is both efficient and effective in solving the problem. Below is an analysis of why it is efficient and well-suited for the task:</p>
+<h3 id="key-aspects-of-the-implementation">Key Aspects of the Implementation</h3>
+<ol>
+<li>
+<p><strong>DSU (Disjoint Set Union) Class</strong>:</p>
+<ul>
+<li>
+<p><strong>Initialization</strong>: 
+    <div class="highlight"><pre><span></span><code><span class="n">DSU</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+<span class="w">    </span><span class="n">parent</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">rank</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">components</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+    The DSU class initializes the <code>parent</code> and <code>rank</code> vectors, and sets the number of components to <code>n</code>. This ensures that each node starts as its own parent, and all ranks are initially zero.</p>
+</li>
+<li>
+<p><strong>Find with Path Compression</strong>:
+    <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">find</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span><span class="w"> </span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+    The <code>find</code> function uses path compression to flatten the structure of the tree, ensuring that future queries are faster.</p>
+</li>
+<li>
+<p><strong>Union by Rank</strong>:
+    <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Union</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x_parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y_parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x_parent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y_parent</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">x_parent</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">y_parent</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">y_parent</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_parent</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">x_parent</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rank</span><span class="p">[</span><span class="n">y_parent</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">x_parent</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_parent</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">parent</span><span class="p">[</span><span class="n">x_parent</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_parent</span><span class="p">;</span>
+<span class="w">        </span><span class="n">rank</span><span class="p">[</span><span class="n">y_parent</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">components</span><span class="o">--</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+    The <code>Union</code> function uses rank to ensure that the smaller tree is always added under the root of the larger tree, which keeps the tree balanced and the depth minimal.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Edge Processing in <code>maxNumEdgesToRemove</code></strong>:</p>
+<ul>
+<li>
+<p><strong>Sorting</strong>:
+    <div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="n">vec1</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="n">vec2</span><span class="p">){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">vec1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec2</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">};</span><span class="w"> </span>
+<span class="n">sort</span><span class="p">(</span><span class="n">begin</span><span class="p">(</span><span class="n">edges</span><span class="p">),</span><span class="n">end</span><span class="p">(</span><span class="n">edges</span><span class="p">),</span><span class="n">lambda</span><span class="p">);</span>
+</code></pre></div>
+    Edges are sorted by type in descending order, ensuring type 3 edges (common edges) are processed first. This is crucial because type 3 edges are more versatile, as they can be used by both Alice and Bob.</p>
+</li>
+<li>
+<p><strong>Processing Edges</strong>:
+    <div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vec</span><span class="o">:</span><span class="n">edges</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">addEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">Alice</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Alice</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">Alice</span><span class="p">.</span><span class="n">Union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">            </span><span class="n">addEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">Bob</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">Bob</span><span class="p">.</span><span class="n">Union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">            </span><span class="n">addEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">addEdge</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="n">edgeCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">Bob</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">Bob</span><span class="p">.</span><span class="n">Union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">            </span><span class="n">edgeCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">Alice</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Alice</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">Alice</span><span class="p">.</span><span class="n">Union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="w">            </span><span class="n">edgeCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">Alice</span><span class="p">.</span><span class="n">isSingleComponent</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">isSingleComponent</span><span class="p">()){</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">edges</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">edgeCount</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+    The code processes type 3 edges first, trying to merge the nodes in both Alice's and Bob's DSU structures. If a merge is successful (i.e., the nodes were not already in the same set), it increments the <code>edgeCount</code>. This ensures that the maximum number of common edges is utilized.</p>
+</li>
+<li>
+<p><strong>Early Termination</strong>:
+    <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">Alice</span><span class="p">.</span><span class="n">isSingleComponent</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Bob</span><span class="p">.</span><span class="n">isSingleComponent</span><span class="p">()){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">edges</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">edgeCount</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+    The code checks if both Alice's and Bob's graphs are fully connected after each edge addition. If both are fully connected, it returns the number of removable edges, thereby avoiding unnecessary iterations.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="efficiency">Efficiency</h3>
+<ul>
+<li>
+<p><strong>Time Complexity</strong>: The find and union operations with path compression and union by rank are nearly constant time, i.e., O(α(n)), where α is the inverse Ackermann function, which grows very slowly. Sorting the edges takes O(m log m), where m is the number of edges. Thus, the overall time complexity is O(m log m + α(n)).</p>
+</li>
+<li>
+<p><strong>Space Complexity</strong>: The DSU class uses O(n) space for the parent and rank arrays, which is efficient in terms of space usage.</p>
+</li>
+</ul>
+<h3 id="conclusion_2">Conclusion</h3>
+<p>This implementation is efficient because it leverages the DSU data structure with path compression and union by rank to keep operations nearly constant time. Sorting the edges and processing type 3 edges first ensures that the algorithm maximizes the use of versatile edges, reducing redundant edges early. The early termination condition further enhances performance by stopping the process as soon as both graphs are fully connected.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
