@@ -111,6 +111,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://blog.cuhawk.co.uk/programming/func/</loc>
+         <lastmod>2024-07-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://blog.cuhawk.co.uk/programming/numofatoms/</loc>
          <lastmod>2024-07-14</lastmod>
          <changefreq>daily</changefreq>
