@@ -1,0 +1,75 @@
+# Reconstructed 2026-08-31 from the published gh-pages output, which was the only
+# surviving copy of this site. Theme values below are read back from the built HTML
+# (mkdocs 1.6.0 / mkdocs-material 9.5.27, blue-grey + indigo, palette toggle, tabs).
+site_name: Cuhawk's Blog
+site_url: https://cuhawk.github.io/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Programming:
+    - DSA: programming/index.md
+    - DFS vs BFS: programming/DSA.md
+    - C++ Functions: programming/func.md
+    - Bitwise: programming/bitwise.md
+    - Reversing Bits: programming/Reverse.md
+    - Number Of Atoms: programming/numofatoms.md
+    - Max Number of Edges: programming/Maximize shortcut nodes.md
+    - Sorting Idealogy: programming/Sorting Idealogy.md
+    - Tree Use Idealogy: programming/Tree Use Idealogy.md
+    - ReactJS: programming/React.md
+    - Snake C++: programming/Snake.md
+    - Booking API: programming/Booking API C#.md
+    - Game Server: programming/GameServer.md
+    - 'Milk Storage C#': programming/Milk App c#.md
+  - Pentesting:
+    - Home: pentesting/index.md
+    - Evasion: pentesting/Evasion.md
+    - Linux AD: pentesting/linux.md
+    - Relaying: pentesting/relaying.md
+    - Cobalt Strike: pentesting/cobalt.md
+  - Certifications:
+    - OSCP: certifications/oscp.md
+    - OSEP: certifications/osep.md
+    - CRTE: certifications/crte.md
+    - HTB ProLabs: certifications/prolabs.md
+  - Local AI:
+    - Home: local-ai/index.md
+    - DeepSeek-V4-Flash at 14 tok/s: local-ai/deepseek-v4-flash.md
+    - Qwen3.8-27B at 127k context: local-ai/qwen38-27b-16gb.md
+    - Lipsync on a moving face: local-ai/lipsync-on-a-moving-face.md
