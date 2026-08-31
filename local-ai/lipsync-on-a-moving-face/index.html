@@ -1,0 +1,1603 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://cuhawk.github.io/local-ai/lipsync-on-a-moving-face/">
+      
+      
+        <link rel="prev" href="../qwen38-27b-16gb/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Lipsync on a moving face - Cuhawk's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lipsync-on-a-moving-face-musetalk-ditto-and-why-the-obvious-hybrid-fails" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cuhawk&#39;s Blog" class="md-header__button md-logo" aria-label="Cuhawk's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cuhawk's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lipsync on a moving face
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../programming/" class="md-tabs__link">
+          
+  
+  Programming
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pentesting/" class="md-tabs__link">
+          
+  
+  Pentesting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../certifications/oscp/" class="md-tabs__link">
+          
+  
+  Certifications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Local AI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cuhawk&#39;s Blog" class="md-nav__button md-logo" aria-label="Cuhawk's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Cuhawk's Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Programming
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DSA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/DSA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DFS vs BFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/func/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++ Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Reverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reversing Bits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/numofatoms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Number Of Atoms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Maximize%20shortcut%20nodes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Number of Edges
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Sorting%20Idealogy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sorting Idealogy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Tree%20Use%20Idealogy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tree Use Idealogy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/React/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ReactJS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Snake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snake C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Booking%20API%20C%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Booking API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/GameServer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Game Server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Milk%20App%20c%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Milk Storage C#
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pentesting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Pentesting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/Evasion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Evasion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux AD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/relaying/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relaying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/cobalt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cobalt Strike
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Certifications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Certifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/oscp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/osep/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSEP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/crte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CRTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/prolabs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTB ProLabs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Local AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Local AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deepseek-v4-flash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DeepSeek-V4-Flash at 14 tok/s
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qwen38-27b-16gb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qwen3.8-27B at 127k context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Lipsync on a moving face
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Lipsync on a moving face
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#two-renderers-measured-against-each-other-and-against-reality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two renderers, measured against each other and against reality
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-metric-was-wrong-and-both-my-judgements-were-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      The metric was wrong, and both my judgements were right
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-hybrid-that-fails-and-why-the-reason-generalises" class="md-nav__link">
+    <span class="md-ellipsis">
+      The hybrid that fails, and why the reason generalises
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuned-constants-are-per-frame-set-not-per-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tuned constants are per-frame-set, not per-project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closing-the-lips-is-a-seam-not-a-warp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closing the lips is a seam, not a warp
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-it-run-live" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making it run live
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benchmark-traps-specific-to-this-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benchmark traps specific to this pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freezing-what-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Freezing what works
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-landed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where it landed
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#two-renderers-measured-against-each-other-and-against-reality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two renderers, measured against each other and against reality
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-metric-was-wrong-and-both-my-judgements-were-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      The metric was wrong, and both my judgements were right
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-hybrid-that-fails-and-why-the-reason-generalises" class="md-nav__link">
+    <span class="md-ellipsis">
+      The hybrid that fails, and why the reason generalises
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuned-constants-are-per-frame-set-not-per-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tuned constants are per-frame-set, not per-project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closing-the-lips-is-a-seam-not-a-warp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closing the lips is a seam, not a warp
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-it-run-live" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making it run live
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benchmark-traps-specific-to-this-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benchmark traps specific to this pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freezing-what-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Freezing what works
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-landed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where it landed
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="lipsync-on-a-moving-face-musetalk-ditto-and-why-the-obvious-hybrid-fails">Lipsync on a moving face: MuseTalk, Ditto, and why the obvious hybrid fails<a class="headerlink" href="#lipsync-on-a-moving-face-musetalk-ditto-and-why-the-obvious-hybrid-fails" title="Permanent link">&para;</a></h1>
+<p>Most lipsync work assumes a still head. Mine does not: the body is real footage from a precomputed loop bank, so she is turning, gesturing and shifting while the generated mouth has to land on the right pixels every frame. This is what I learned making that work with two renderers, including the hybrid that looked obvious and was worthless.</p>
+<h2 id="two-renderers-measured-against-each-other-and-against-reality">Two renderers, measured against each other and against reality<a class="headerlink" href="#two-renderers-measured-against-each-other-and-against-reality" title="Permanent link">&para;</a></h2>
+<p>One body loop, five WAVs, 115 seconds of speech, mouth aperture against audio envelope at zero lag:</p>
+<table>
+<thead>
+<tr>
+<th>renderer</th>
+<th>per-clip correlation</th>
+<th style="text-align: right;">mean</th>
+<th>cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MuseTalk</td>
+<td>+0.132 +0.100 +0.014 -0.199 +0.090</td>
+<td style="text-align: right;"><strong>+0.027</strong></td>
+<td>0.27x realtime</td>
+</tr>
+<tr>
+<td>Ditto</td>
+<td>+0.162 +0.148 +0.192 +0.025 +0.197</td>
+<td style="text-align: right;"><strong>+0.145</strong></td>
+<td>2.37-3.24x realtime</td>
+</tr>
+<tr>
+<td>real footage</td>
+<td></td>
+<td style="text-align: right;">+0.358 and +0.743</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Ditto wins 5 of 5 and is roughly 5x better than MuseTalk. It is also still only about 40% of the way to real footage, and roughly 10x slower, so the live path cannot simply swap to it.</p>
+<p>A theory I want to record as <strong>dead</strong>, because it is tempting and I wasted time on it: MuseTalk does not have a fixed timing offset. A single 13-second clip showed an enticing -7 frame lead. Across five clips the best lag scatters -2, -12, -7, -11, -11, with three sitting at the edge of the ±12 search window. That is not an offset, that is maximising over lags on short audio. If your best-lag search keeps returning the window edge, you are fitting noise.</p>
+<h2 id="the-metric-was-wrong-and-both-my-judgements-were-right">The metric was wrong, and both my judgements were right<a class="headerlink" href="#the-metric-was-wrong-and-both-my-judgements-were-right" title="Permanent link">&para;</a></h2>
+<p>Ditto measured better on sync correlation and read <em>worse</em> by eye. That contradiction turned out to be the most useful thing I found.</p>
+<p>Correlation rewards "the mouth opens when there is sound." The eye does not watch openings. It locks timing onto <strong>closures</strong> — /m/, /b/, /p/, word boundaries. A renderer can track the envelope beautifully and still look wrong if the lips never actually shut.</p>
+<p>Ditto's default <code>relative_d=True</code> computes <code>x_d_info[k] = x_s_info[k] + (v - d0[k]) * alpha</code>. With a video source, <code>x_s_info["exp"]</code> is the body loop's own expression — and every loop is footage of someone <em>talking</em>. So it adds generated lip motion on top of an already-open mouth:</p>
+<table>
+<thead>
+<tr>
+<th>config</th>
+<th style="text-align: right;">closed frames</th>
+<th style="text-align: right;">closures/s</th>
+<th style="text-align: right;">p5 aperture</th>
+<th style="text-align: right;">corr@0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>real footage</td>
+<td style="text-align: right;">23.6%</td>
+<td style="text-align: right;">1.65</td>
+<td style="text-align: right;">0.0053</td>
+<td style="text-align: right;">+0.358</td>
+</tr>
+<tr>
+<td>MuseTalk</td>
+<td style="text-align: right;">15.6%</td>
+<td style="text-align: right;">1.23</td>
+<td style="text-align: right;">0.0050</td>
+<td style="text-align: right;">+0.014</td>
+</tr>
+<tr>
+<td>Ditto <code>relative_d=True</code></td>
+<td style="text-align: right;">1.2%</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.0551</td>
+<td style="text-align: right;">+0.184</td>
+</tr>
+<tr>
+<td>Ditto <code>relative_d=False</code></td>
+<td style="text-align: right;">15.2%</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">0.0043</td>
+<td style="text-align: right;">+0.322</td>
+</tr>
+<tr>
+<td>+ <code>use_d_keys {"exp":1.2}</code></td>
+<td style="text-align: right;">17.1%</td>
+<td style="text-align: right;">1.45</td>
+<td style="text-align: right;">0.0035</td>
+<td style="text-align: right;">+0.350</td>
+</tr>
+</tbody>
+</table>
+<p><strong>1.2% closed frames against real footage's 23.6%.</strong> The fix is <code>relative_d=False</code>, which drops the <code>x_s_info[k] +</code> term and uses the model's absolute motion, trained on real speakers who do close their mouths.</p>
+<p>Note the trap in the row above it: scaling <code>exp</code> alone makes closure <em>worse</em> (1.2% to 0.6%). Alpha multiplies only the delta, never the open base, so it widens every opening and never shuts anything. A parameter that improves your headline metric while destroying the thing you actually care about is the normal case, not the exception.</p>
+<h2 id="the-hybrid-that-fails-and-why-the-reason-generalises">The hybrid that fails, and why the reason generalises<a class="headerlink" href="#the-hybrid-that-fails-and-why-the-reason-generalises" title="Permanent link">&para;</a></h2>
+<p>The obvious idea: Ditto has the better jaw, MuseTalk has the speed, so composite Ditto's jaw with MuseTalk's lips.</p>
+<p>The cheap version is a one-line change — substitute Ditto's frame for <code>ori_frame</code> in MuseTalk's realtime path. It composites cleanly. It is also worthless:</p>
+<table>
+<thead>
+<tr>
+<th>arm</th>
+<th style="text-align: right;">corr@0</th>
+<th style="text-align: right;">closed%</th>
+<th style="text-align: right;">closures/s</th>
+<th style="text-align: right;">p5 ap</th>
+<th style="text-align: right;">jaw~DITTO</th>
+<th style="text-align: right;">jaw~PLAIN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DITTO</td>
+<td style="text-align: right;">0.311</td>
+<td style="text-align: right;">13.3</td>
+<td style="text-align: right;">1.16</td>
+<td style="text-align: right;">0.0013</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.434</td>
+</tr>
+<tr>
+<td>PLAIN (MuseTalk)</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">0.85</td>
+<td style="text-align: right;">0.0064</td>
+<td style="text-align: right;">0.434</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr>
+<td>v0 (cheap hybrid)</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">1.08</td>
+<td style="text-align: right;">0.0082</td>
+<td style="text-align: right;">0.503</td>
+<td style="text-align: right;">0.878</td>
+</tr>
+<tr>
+<td>v1 (re-prep)</td>
+<td style="text-align: right;">0.147</td>
+<td style="text-align: right;">4.9</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">0.0103</td>
+<td style="text-align: right;">0.721</td>
+<td style="text-align: right;">0.769</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MuseTalk's mask covers the whole lower face, not the lips.</strong> Everything Ditto uniquely contributes — jaw, expression — is inside that mask and gets overwritten. Everything outside it — head pose, body, hands — Ditto already took from the loop unchanged, because it runs <code>use_d_keys=("exp",)</code>. There is no region left for Ditto to own. v0 is PLAIN with extra steps: <code>jaw~DITTO</code> 0.503 against a floor of 0.434.</p>
+<p>That floor matters. Two renders of the same loop share a head pose, so "no jaw preserved at all" scores 0.434, not 0. Without computing the floor, 0.503 looks like partial success.</p>
+<p>Only v1 works: re-prep MuseTalk on Ditto's <em>output</em> frames, so landmarks, coords, masks and latents are all measured on Ditto's geometry and it inpaints lips into the already-moved jaw. That prep is per-utterance and can never be cached, which makes the hybrid <strong>permanently offline-only</strong> — and kills the live route, because v0 was the only cacheable arm that speed work could have rescued.</p>
+<p><strong>Measure lips and jaw separately.</strong> Jaw as nose-base to chin over face width. One mouth metric cannot distinguish a lost jaw from a changed lip shape, and v0 would have sailed through it.</p>
+<h2 id="tuned-constants-are-per-frame-set-not-per-project">Tuned constants are per-frame-set, not per-project<a class="headerlink" href="#tuned-constants-are-per-frame-set-not-per-project" title="Permanent link">&para;</a></h2>
+<p>Two of my own carefully tuned numbers became wrong the moment the pipeline changed underneath them, without anything erroring.</p>
+<p><code>UPPER_RATIO 0.54</code>, fitted to the loop's crop geometry, is <em>worse</em> in a v1 prep (closures/s 0.85 to 0.69). A v1 prep measures landmarks on Ditto's frames, where the anatomically correct boundary is simply a different number. The stock 0.5 won by accident.</p>
+<p><code>GAIN_BOT 0.95</code> was tuned when <code>src</code> in <code>src + g*(gen - src)</code> meant the loop pixel. In the hybrid, <code>src</code> is the Ditto pixel — so g=0 is pure Ditto and g=1 is pure MuseTalk, and 0.95 means "5% of Ditto," which is 5% of an already-open mouth. It closed worst of every arm tested.</p>
+<p>Also settled by sweep: <code>jaw~DITTO</code> sits at ~0.71 in <em>every</em> gain arm. <strong>Jaw preservation is a prep-time property and nothing the paste blend can reach.</strong> Do not sweep the ramp for jaw.</p>
+<h2 id="closing-the-lips-is-a-seam-not-a-warp">Closing the lips is a seam, not a warp<a class="headerlink" href="#closing-the-lips-is-a-seam-not-a-warp" title="Permanent link">&para;</a></h2>
+<p>Neither renderer will shut the mouth on bilabials, so it ends up as an image-space warp applied after both. Worst-case bilabial aperture 0.0263 to 0.0102, with jaw amplitude and non-bilabial motion unchanged.</p>
+<p><strong>A thin-plate spline cannot close a mouth.</strong> The upper and lower inner lip edges must both arrive at the midline from opposite sides, so any continuous map is asked to send one destination point to two source points. A TPS averages them, the midline samples the middle of the gap — the dark interior — and the gap is <em>reinforced</em>: 0.0263 becomes 0.0699. The discontinuity at the lip line is the thing being modelled, not an artefact to smooth away. The correct construction is two half-warps cross-faded in image space over about one row; averaging their maps hits exactly the same trap.</p>
+<p>Three failure modes on the way, each of which looked like a different bug: extrapolating past the outer-lip anchors tore a rectangle with white smears; a scalar midline drew a hard black bar, because the seam was straight and a mouth is curved (it needs a per-column midline); and a whole-row <code>np.where</code> switch staircased.</p>
+<p><strong>All three were invisible to the aperture metric and immediately obvious in a 4x mouth crop.</strong> When tuning a warp, look at the pixels.</p>
+<h2 id="making-it-run-live">Making it run live<a class="headerlink" href="#making-it-run-live" title="Permanent link">&para;</a></h2>
+<p>The full quality stack was offline-only, and switching it on before pipelining cost a session:</p>
+<table>
+<thead>
+<tr>
+<th>configuration</th>
+<th>speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bare, serial (historical default)</td>
+<td>1.06x</td>
+</tr>
+<tr>
+<td>full stack, serial</td>
+<td>0.58-0.61x</td>
+</tr>
+<tr>
+<td>bare, pipelined</td>
+<td>1.17-1.23x</td>
+</tr>
+<tr>
+<td>full stack, pipelined + landmark pool</td>
+<td>1.09-1.17x</td>
+</tr>
+</tbody>
+</table>
+<p>Below 1.0x the presenter exhausts its composited frames and falls back to the idle bank, so <strong>her mouth freezes mid-reply while the audio keeps playing.</strong> It presents as nothing at all: complete transcript, no error, no dead process, just ten utterances quietly logging 0.46 to 0.65.</p>
+<p><strong>The cost was the per-frame landmark pass, not the quality layers.</strong> With everything off, mediapipe never runs. The seal needs it on ~7% of frames; coupling and the stabiliser need it on every frame.</p>
+<p>Three things I got wrong about optimising that:</p>
+<p><strong>mediapipe's cost is per call, not per pixel.</strong> Detection is 6.69 ms at 0.5 scale and 8.13 ms at full resolution — +22% for 4x the pixels. Three consumers each detecting on the same composited frame were paying three full prices, and lowering the detect scale was never going to help. Sharing one detection: 10.46 to 6.69 ms/frame, with every quality ratio 0.99-1.00 against base.</p>
+<p><strong>Frame-skipping is capped by the seal, and that cap is correct.</strong> Any frame carrying seal weight is forced to a real detection, because the warp must never run on estimated lip corners. On the bilabial corpus that is 52 of 92 frames, 57%. So <code>every=2</code> skips only 22 detections and the curve is flat past 2. Landmark tracking is 4x cheaper than detection but carries 0.79 px of lip-ring error, which is not worth 11% when it feeds a 1-3 px geometric warp.</p>
+<p><strong>Cascading the GPU stage buys nothing.</strong> VAE decode is 83% of GPU time (2.61 s against UNet's 0.54 s) and ends in a device-to-host copy, so a third pipeline stage looked free. It is not: cascaded, UNet time goes 0.58 to 2.98 s because the main thread blocks on a device the decoder thread is already saturating. Bit-identical output, zero gain. Two threads do not make one card wider.</p>
+<p>Only detection parallelises here. The stabiliser is causal and the tracker is stateful, so the pass has to be composite, then detect in parallel, then seal to stabiliser to coupling strictly in order.</p>
+<h2 id="benchmark-traps-specific-to-this-pipeline">Benchmark traps specific to this pipeline<a class="headerlink" href="#benchmark-traps-specific-to-this-pipeline" title="Permanent link">&para;</a></h2>
+<p><strong>End-to-end FPS cannot measure any of the above.</strong> In the A/B harness the base arm read 12.4 fps and a strictly-more-work arm read 15.1. Reversing the arm order flipped the ranking, because the first arm of every run absorbs the warm-up. Three repeats did not fix it. Use a direct interleaved microbenchmark plus deterministic call counts.</p>
+<p><strong>Both "slow first utterance" bugs were warm-up, not throughput.</strong> The thread pool built lazily, and the forced-aligner's first call compiles CUDA kernels: 1.33 s on line one against 0.07 s afterwards, dragging a 2.64-second line from 1.05x to 0.68x. Warming both at startup with a throwaway alignment moved the minimum across 16 lines from 0.68 to 0.96.</p>
+<p><strong>Always render the control arm with the feature disabled.</strong> The stabiliser's lip-edge deviation is exactly 0.000 offline, where it is the last operation, but non-zero in the pipeline. The arm with the stabiliser entirely <em>off</em> reads 5.667 — because a later warp resamples the same region. I nearly attributed that number to the stabiliser.</p>
+<h2 id="freezing-what-works">Freezing what works<a class="headerlink" href="#freezing-what-works" title="Permanent link">&para;</a></h2>
+<p>Once a look is approved by eye, it needs a tripwire, because every constant above is silently reinterpretable.</p>
+<p><strong>Hash the functions that produce pixels, not the files.</strong> My first verifier hashed whole modules and failed immediately on a docstring edit and a one-line change to <em>where</em> a component sourced its landmarks — nothing in the warp itself. A tripwire that fires on prose gets ignored, and an ignored tripwire is worse than none. It now hashes the source of the specific functions that touch pixels, keeping the module hash alongside as information rather than as a gate.</p>
+<p>Fidelity of the frozen stack: bare output is bit-identical, max difference 0. The full stack differs by at most one luma level on 27% of frames, because a second mediapipe instance returns landmarks 1.5e-5 px apart in float32 and that crosses a uint8 rounding boundary after a spline. Every quality ratio measures exactly 1.000.</p>
+<h2 id="where-it-landed">Where it landed<a class="headerlink" href="#where-it-landed" title="Permanent link">&para;</a></h2>
+<p>The live path is MuseTalk with the tuned stack, a lip seal for bilabials, a mild causal stabiliser and shared landmarks, running at 1.09-1.17x realtime. Ditto is the offline quality reference and the source for anything rendered ahead of time.</p>
+<p>The honest summary is that the hybrid did not work the cheap way, the metric that drove early decisions was measuring the wrong half of speech, and most of the wins came from finding out what could not work rather than from tuning what could.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

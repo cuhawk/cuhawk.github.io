@@ -1,0 +1,1542 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://cuhawk.github.io/local-ai/deepseek-v4-flash/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../qwen38-27b-16gb/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>DeepSeek-V4-Flash at 14 tok/s - Cuhawk's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#running-deepseek-v4-flash-at-14-toks-on-a-16-gb-laptop" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cuhawk&#39;s Blog" class="md-header__button md-logo" aria-label="Cuhawk's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cuhawk's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DeepSeek-V4-Flash at 14 tok/s
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../programming/" class="md-tabs__link">
+          
+  
+  Programming
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pentesting/" class="md-tabs__link">
+          
+  
+  Pentesting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../certifications/oscp/" class="md-tabs__link">
+          
+  
+  Certifications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Local AI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cuhawk&#39;s Blog" class="md-nav__button md-logo" aria-label="Cuhawk's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Cuhawk's Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Programming
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DSA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/DSA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DFS vs BFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/func/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++ Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Reverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reversing Bits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/numofatoms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Number Of Atoms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Maximize%20shortcut%20nodes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Number of Edges
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Sorting%20Idealogy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sorting Idealogy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Tree%20Use%20Idealogy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tree Use Idealogy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/React/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ReactJS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Snake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snake C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Booking%20API%20C%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Booking API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/GameServer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Game Server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming/Milk%20App%20c%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Milk Storage C#
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pentesting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Pentesting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/Evasion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Evasion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux AD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/relaying/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relaying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pentesting/cobalt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cobalt Strike
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Certifications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Certifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/oscp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/osep/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSEP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/crte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CRTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/prolabs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTB ProLabs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Local AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Local AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    DeepSeek-V4-Flash at 14 tok/s
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    DeepSeek-V4-Flash at 14 tok/s
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      The result
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-actually-worked" class="md-nav__link">
+    <span class="md-ellipsis">
+      What actually worked
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What actually worked">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-expert-pruning-reap-150b-566" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Expert pruning, REAP-150B (+56.6%)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-moe-cache-6144-128" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. --moe-cache 6144 (+12.8%)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ub-512-with-budget-49152-12549-to-14046" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. -ub 512 with budget 49152 (12.549 to 14.046)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-killed-with-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      What I killed with measurement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What I killed with measurement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pcie-expert-streaming-dead" class="md-nav__link">
+    <span class="md-ellipsis">
+      PCIe expert streaming: dead
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-31-ms-gap-an-accounting-artifact-i-chased-for-a-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      The "31 ms gap": an accounting artifact I chased for a week
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#also-measured-dead" class="md-nav__link">
+    <span class="md-ellipsis">
+      Also measured dead
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-traps-that-cost-me-the-most" class="md-nav__link">
+    <span class="md-ellipsis">
+      The traps that cost me the most
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-still-open-honestly" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is still open, honestly
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qwen38-27b-16gb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qwen3.8-27B at 127k context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lipsync-on-a-moving-face/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lipsync on a moving face
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      The result
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-actually-worked" class="md-nav__link">
+    <span class="md-ellipsis">
+      What actually worked
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What actually worked">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-expert-pruning-reap-150b-566" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Expert pruning, REAP-150B (+56.6%)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-moe-cache-6144-128" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. --moe-cache 6144 (+12.8%)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ub-512-with-budget-49152-12549-to-14046" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. -ub 512 with budget 49152 (12.549 to 14.046)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-killed-with-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      What I killed with measurement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What I killed with measurement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pcie-expert-streaming-dead" class="md-nav__link">
+    <span class="md-ellipsis">
+      PCIe expert streaming: dead
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-31-ms-gap-an-accounting-artifact-i-chased-for-a-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      The "31 ms gap": an accounting artifact I chased for a week
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#also-measured-dead" class="md-nav__link">
+    <span class="md-ellipsis">
+      Also measured dead
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-traps-that-cost-me-the-most" class="md-nav__link">
+    <span class="md-ellipsis">
+      The traps that cost me the most
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-still-open-honestly" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is still open, honestly
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="running-deepseek-v4-flash-at-14-toks-on-a-16-gb-laptop">Running DeepSeek-V4-Flash at 14 tok/s on a 16 GB laptop<a class="headerlink" href="#running-deepseek-v4-flash-at-14-toks-on-a-16-gb-laptop" title="Permanent link">&para;</a></h1>
+<p>A 79 GiB mixture-of-experts model on a card with 16 GB of VRAM. This is what I tried over several weeks, what worked, what I killed with measurement, and the mistakes that cost me the most time.</p>
+<p><strong>The box.</strong> RTX 5080 Laptop (16303 MiB), Ryzen AI 9 HX 370, 64 GB RAM, Windows 11, NVMe. Engine is a local build of <code>llama.cpp</code> with the MoE-direct expert cache.</p>
+<h2 id="the-result">The result<a class="headerlink" href="#the-result" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>config</th>
+<th style="text-align: right;">decode tok/s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>as-found, <code>--moe-cache 4096</code></td>
+<td style="text-align: right;">~7.1</td>
+</tr>
+<tr>
+<td>fully tuned, original weights</td>
+<td style="text-align: right;">8.012</td>
+</tr>
+<tr>
+<td>REAP-150B, same knobs</td>
+<td style="text-align: right;">12.549</td>
+</tr>
+<tr>
+<td><strong>REAP + <code>-ub 512</code> + budget 49152</strong></td>
+<td style="text-align: right;"><strong>14.046</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>+75% end to end</strong>, on an 8-turn agentic workload. Every number is A/B/B/A with the first pair discarded, identical prompt stream, and the mechanism confirmed in engine metrics each time.</p>
+<h2 id="what-actually-worked">What actually worked<a class="headerlink" href="#what-actually-worked" title="Permanent link">&para;</a></h2>
+<h3 id="1-expert-pruning-reap-150b-566">1. Expert pruning, REAP-150B (+56.6%)<a class="headerlink" href="#1-expert-pruning-reap-150b-566" title="Permanent link">&para;</a></h3>
+<p>By far the dominant lever, and the reason it works is not the obvious one.</p>
+<p>Pruning did <strong>not</strong> reduce the arithmetic per token. Top-k is still 6, the per-token expert record is still 13,369,344 B, and bytes/token stays invariant at <strong>3.45 GB</strong>. What changed is <strong>residency</strong>: with fewer total experts, a much larger fraction of the working set fits in the RAM pool, so the same bytes come from memory instead of NVMe.</p>
+<p>This is worth internalising if you are sizing a prune. Active parameters set your token rate, so a prune that halves total parameters while leaving top-k alone does not make each token cheaper. It makes each token more likely to hit cache. Those are different mechanisms with different scaling.</p>
+<h3 id="2-moe-cache-6144-128">2. <code>--moe-cache 6144</code> (+12.8%)<a class="headerlink" href="#2-moe-cache-6144-128" title="Permanent link">&para;</a></h3>
+<p>Every DeepSeek number I had measured for weeks was taken at <code>--moe-cache 4096</code>, which turned out to be leaving 12.8% on the table. <code>8192</code> grants the same VRAM (14814 MiB) and buys exactly nothing, because the grant saturates.</p>
+<p>Worth a general point: an inherited default that appears in every one of your benchmark arms is invisible. It cancels out of every A/B you run, so nothing in your own data will ever point at it.</p>
+<h3 id="3-ub-512-with-budget-49152-12549-to-14046">3. <code>-ub 512</code> with budget 49152 (12.549 to 14.046)<a class="headerlink" href="#3-ub-512-with-budget-49152-12549-to-14046" title="Permanent link">&para;</a></h3>
+<p>The interesting part is that <code>-ub 2048</code> had been the <em>winner</em> on the original model, and the reversal is not noise. It is coverage-dependence.</p>
+<p>Prefill cost is sweep-count times whole-model-sweep. On the original weights, coverage was low enough that a bigger microbatch genuinely paid. After pruning, coverage rises to 67.9%, sweeps mostly hit the pool (prefill hit rate <strong>85.8% to 97.22%</strong>, prefill read <strong>181 GB to 56 GB</strong>), so the large-ubatch penalty evaporates and the smaller microbatch buys back the host memory the bigger pool needs.</p>
+<p>Right at low coverage, wrong at high coverage. One knob, sign flipped by a change elsewhere.</p>
+<p>Note the pairing constraint: budget 49152 with <code>-ub 2048</code> crashes mid-run on <strong>host</strong> memory, not VRAM, with <code>decode() failed: bad allocation</code> followed by <code>GGML_ASSERT(galloc-&gt;node_allocs != NULL)</code>.</p>
+<h2 id="what-i-killed-with-measurement">What I killed with measurement<a class="headerlink" href="#what-i-killed-with-measurement" title="Permanent link">&para;</a></h2>
+<p>This is the more useful half, and it is the half nobody publishes.</p>
+<h3 id="pcie-expert-streaming-dead">PCIe expert streaming: dead<a class="headerlink" href="#pcie-expert-streaming-dead" title="Permanent link">&para;</a></h3>
+<p>The idea: the Gen4 x8 link sits idle during the compute phase (verified live, <code>pcie.link.gen=4</code>, width 8), so stream experts over it. Predicted 10 to 17 ms/token.</p>
+<p>I wrote three CUDA probes and measured it. Host-to-device is fast and robust, <strong>13.5 to 14.4 GB/s</strong>, unchanged by CPU load, pageable within 4% of pinned. But the DMA draws on the <strong>same memory controller</strong> as the CPU MoE gather:</p>
+<ul>
+<li><strong>0.88 to 0.97 GB/s of CPU DRAM bandwidth lost per 1 GB/s streamed</strong>, from two independent tests.</li>
+<li>Combined CPU+H2D ceiling 74 to 78 GB/s, against 72.9 to 77.5 GB/s CPU-only. A net gain of about 2%.</li>
+</ul>
+<p>The tax does fall at low CPU pressure (0.26 at 44.7 GB/s), but the CPU phase is DRAM-bound at ~54 GB/s during its own window, so the saturated tax is the one that applies.</p>
+<p><strong>The link is idle. The controller feeding it is not.</strong> Verdict: do not fund the patch.</p>
+<h3 id="the-31-ms-gap-an-accounting-artifact-i-chased-for-a-week">The "31 ms gap": an accounting artifact I chased for a week<a class="headerlink" href="#the-31-ms-gap-an-accounting-artifact-i-chased-for-a-week" title="Permanent link">&para;</a></h3>
+<p>I had a headline finding that the CPU MoE engine was extracting only ~65% of its own kernel rate, leaving a ~31 ms/token gap. A whole workstream was priced against it.</p>
+<p>It was not real. The <code>cmp</code> counter is not CPU-MoE time. It contains <strong>every millisecond the CPU sits idle waiting for the GPU</strong>. The tell was sitting in my own CSV the whole time: <code>gpu_util_mean x ms_per_tok</code> is flat at <strong>32 to 42 ms</strong> while <code>ms_per_tok</code> swings 135.8 to 207.1 and thread count swings 2 to 24. A thread-invariant GPU term was hiding inside a counter I had labelled as CPU work.</p>
+<p>Corrected decomposition per token: <strong>wait ~35 ms, CPU MoE GEMV ~48 to 52 ms, serialized GPU graph/launch ~26 ms</strong>.</p>
+<p>That ~26 ms is 24% of the token and had never been examined by anyone, including me. 43 layers of MLA attention over 89.75 MiB of device KV cannot exceed ~2 to 4 ms of real kernel work; the rest is launch overhead and split-boundary synchronisation. The single largest block on the box turned out to be the one my instrumentation had been quietly attributing elsewhere.</p>
+<p>Everything priced against the phantom gap was over-priced, including an entire threadpool dimension (libomp, <code>GGML_OPENMP=OFF</code>, devirtualising <code>vec_dot</code>, fusing the add chain) that collapsed to 1 to 2 ms combined once the accounting was fixed.</p>
+<h3 id="also-measured-dead">Also measured dead<a class="headerlink" href="#also-measured-dead" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>MOE_DIRECT_SPLIT_READ</code> above 3.</strong> Measured in-source: 1-way 3.48 ms, 3-way 2.69, then 4/6/12-way at 3.13/3.37/4.12. Split-read is fully cashed at 3.</li>
+<li><strong>Control-queue batching.</strong> <code>control_q_max_depth=1</code> and <code>control_q_full_waits=0</code> in all 29 runs. There is no queue to batch.</li>
+<li><strong>Round-trip elimination</strong> as anything above 2 ms. Residual is 4 to 6 microseconds over ~260 round-trips, so the whole family tops out near 1.5 ms. The earlier "~366 round-trips" figure was also wrong; measured <code>dispatcher_demand_cmd/token</code> is 129.5 to 131.0 in 29 of 29 rows.</li>
+<li><strong>TLB, page-walk and DRAM page thrash.</strong> 846k pages/token times ~25 cycles is a <strong>5.1 ms ceiling</strong> even fully serial. A probe using the identical 4 KiB random-slab layout hit 98.6% of that ceiling, so large pages stay dead.</li>
+<li><strong>False sharing in <code>mul_mat_id</code>.</strong> The chunk counters are already cache-line padded.</li>
+<li><strong>AVX-512 512-bit rewrite</strong> (Zen 5 mobile double-pumps), <strong>LPDDR5X tuning</strong> (soldered, already at rated 7500), <strong>CPU clock droop</strong> (3.2%).</li>
+</ul>
+<h2 id="the-traps-that-cost-me-the-most">The traps that cost me the most<a class="headerlink" href="#the-traps-that-cost-me-the-most" title="Permanent link">&para;</a></h2>
+<p><strong>A build wrapper that exits 0 regardless.</strong> <code>build-bg.cmd</code> reports real status in <code>build.exit</code>, but the wrapper itself always exits 0. A failed compile sailed through and produced a confident, fully-retracted -6.1% result: I had "measured" a binary that was never rebuilt. Now I check <code>build.exit</code>, the artifact mtime, <strong>and</strong> grep the built DLL for a string I know exists only in the new code.</p>
+<p><strong>Environment variables leaking across A/B arms.</strong> My harness cleared <code>MOE_DIRECT_*</code> between arms but not <code>GGML_CUDA_MOE_CACHE_*</code>. Anything set for one arm silently persisted into every later arm in the same session. An A/B with leaked state is not a slow A/B, it is a worthless one.</p>
+<p><strong>A first-arm transient large enough to invent findings.</strong> 17 of 17 arm families show a 10 to 21 ms intra-run transient over a 192-token window even after a 128-token warmup. My 110.6 ms headline was transient-contaminated; late-window steady state is ~102.4 ms (n=5, three of five runs at or below 100.8 ms). Interleave arms and discard the first pair, or a real +8% reads as noise and a fast configuration reads 31% slow.</p>
+<p><strong>Instrumentation overhead that is not common-mode.</strong> I had assumed the ~6% metrics cost cancelled across arms. It does not: 3.9% on one arm against 1.6% on another. Every metrics-enabled comparison carries arm-dependent bias.</p>
+<p><strong>A metrics path that is a filename, not a flag.</strong> <code>MOE_DIRECT_METRICS</code> takes a path and is exclusive-create. Setting it to <code>1</code> writes JSONL to a file literally named <code>1</code>, and startup aborts if the file already exists. I spent a session concluding counters were missing when they were sitting in a file called <code>1</code>.</p>
+<h2 id="what-is-still-open-honestly">What is still open, honestly<a class="headerlink" href="#what-is-still-open-honestly" title="Permanent link">&para;</a></h2>
+<p><strong>Quality is unmeasured on my workload, and it is the one thing that could invalidate the whole result.</strong> Published REAP evals are near-parity (mean +0.80 across GSM8K, MATH-500, HumanEval+, MBPP+) but say nothing about security or code work specifically. Renormalised routing makes cache statistics <em>improve</em> while output quality drops, so throughput physically cannot detect the failure mode.</p>
+<p>The plan is top-k logprob agreement under teacher forcing: generate with the original model, then score that exact token sequence under REAP and compare per-position. Greedy outputs diverge, and after the divergence point a naive per-position comparison is meaningless, which is why teacher forcing rather than free generation.</p>
+<p>Until that runs, treat the 14.05 as a throughput result and nothing more.</p>
+<p>The other open item is that ~26 ms serialized GPU term. A fused gate-times-SwiGLU CUDA path already exists in the tree and is never called. If launch overhead dominates the way the arithmetic suggests, it is worth more than every remaining lever combined.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
