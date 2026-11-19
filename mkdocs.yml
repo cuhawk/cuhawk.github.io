@@ -42,6 +42,7 @@ plugins:
 
 nav:
   - Home: index.md
+  - Interactive Demos: demos/index.html
   - Programming:
     - DSA: programming/index.md
     - DFS vs BFS: programming/DSA.md

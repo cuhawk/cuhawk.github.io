@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Four browser-based engineering demos from Cuhawk's Blog.">
+  <meta name="color-scheme" content="dark">
+  <title>Engineering demos · Cuhawk's Blog</title>
+  <link rel="stylesheet" href="demos.css">
+  <script defer src="scenarios.js"></script>
+  <script defer src="demos.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap"><a href="../">← Cuhawk’s Blog</a><span>Interactive demos</span></div>
+  </header>
+  <main class="wrap">
+    <h1>Engineering demos</h1>
+    <p class="intro">Follow async JavaScript, compare agent reliability, review cloud-to-cluster access, and simulate model fallback. Everything runs in your browser.</p>
+    <nav aria-label="Engineering demos">
+      <a href="#astra">ASTRA</a>
+      <a href="#arl">AgentReliabilityLab</a>
+      <a href="#kubeblast">KubeBlast</a>
+      <a href="#inferroute">InferRoute</a>
+    </nav>
+
+    <noscript><p>Enable JavaScript to use the visualizers.</p></noscript>
+
+    <section id="astra">
+      <h2>ASTRA</h2>
+      <p>JavaScript callgraph and async taint tracing through a fictional telemetry pipeline. Choose a fixture and select a node to inspect the value at that step.</p>
+      <div class="controls">
+        <label>Fixture <select id="fixture"><option value="promise">Promise callback</option><option value="timer">Timer callback</option></select></label>
+        <label class="check"><input type="checkbox" id="redaction"> Redact private input before reporting</label>
+      </div>
+      <ol id="callgraph" class="graph" aria-label="JavaScript callgraph"></ol>
+      <div class="detail" id="trace" aria-live="polite"></div>
+      <p class="source"><a href="https://github.com/cuhawk/ASTRA">ASTRA project ↗</a></p>
+    </section>
+
+    <section id="arl">
+      <h2>AgentReliabilityLab</h2>
+      <p>Compare guarded and weak reference agents across all 62 scenarios. Each bar shows the Wilson 95% confidence interval for the scenario pass rate.</p>
+      <div class="controls">
+        <label>Category <select id="category"><option value="">All 13 categories</option></select></label>
+        <label class="check"><input type="checkbox" id="failures"> Show scenarios with a failure</label>
+      </div>
+      <div class="metrics" id="intervals" aria-live="polite"></div>
+      <details>
+        <summary id="scenario-summary">Scenario outcomes</summary>
+        <table>
+          <thead><tr><th scope="col">Scenario</th><th scope="col">Guarded</th><th scope="col">Weak</th></tr></thead>
+          <tbody id="scenarios"></tbody>
+        </table>
+      </details>
+      <p class="source">Offline reference runs from the <a id="arl-source" href="https://github.com/cuhawk/AgentReliabilityLab">AgentReliabilityLab full suite ↗</a></p>
+    </section>
+
+    <section id="kubeblast">
+      <h2>KubeBlast</h2>
+      <p>Review a fictional Cloud IAM → Kubernetes RBAC exposure graph. Apply access controls to see which namespace permissions remain reachable from the workload identity.</p>
+      <div class="controls">
+        <label class="check"><input type="checkbox" id="trust"> Restrict cloud trust</label>
+        <label class="check"><input type="checkbox" id="binding"> Remove write-role binding</label>
+      </div>
+      <ul id="access-graph" class="graph" aria-label="Cloud IAM to Kubernetes RBAC graph"></ul>
+      <div class="detail" id="access-detail" aria-live="polite"></div>
+      <p class="source"><a href="https://github.com/cuhawk/KubeBlast">KubeBlast project ↗</a></p>
+    </section>
+
+    <section id="inferroute">
+      <h2>InferRoute</h2>
+      <p>Simulate routing across fictional models. Eligibility depends on workload and cost ceiling. Eligible models are ranked by the selected priority, with model name breaking ties.</p>
+      <div class="controls">
+        <label>Workload <select id="workload"><option value="text">Text</option><option value="vision">Vision</option></select></label>
+        <label>Priority <select id="priority"><option value="latency">Lowest latency</option><option value="cost">Lowest cost</option><option value="quality">Highest quality</option></select></label>
+        <label>Maximum cost per request <select id="budget"><option value="8">$0.008</option><option value="4">$0.004</option><option value="2">$0.002</option></select></label>
+      </div>
+      <fieldset id="outages"><legend>Simulate unavailable models</legend></fieldset>
+      <div class="detail" id="route-result" aria-live="polite"></div>
+      <table>
+        <thead><tr><th scope="col">Model</th><th scope="col">Latency</th><th scope="col">Cost</th><th scope="col">Quality / 100</th><th scope="col">Decision</th></tr></thead>
+        <tbody id="models"></tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
