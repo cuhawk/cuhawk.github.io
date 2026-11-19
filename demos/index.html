@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engineering Demos | Cuhawk</title>
+<style>
+:root{color-scheme:dark;--bg:#10151c;--panel:#19222d;--line:#35455a;--ink:#edf4ff;--muted:#b1c0d2;--accent:#8be0ce}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,sans-serif}
+header,main{width:min(1100px,calc(100% - 2rem));margin:auto}header{padding:1.2rem 0;border-bottom:1px solid var(--line)}
+a{color:var(--accent)}h1{font-size:clamp(2.4rem,7vw,5rem);letter-spacing:-.06em;line-height:1;margin:2.2rem 0 .6rem}
+h2{margin:.25rem 0;font-size:1.65rem}p{color:var(--muted)}nav,.controls,.graph{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+nav{margin:1.6rem 0 1rem}article{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:clamp(1rem,3vw,2rem);margin-bottom:3rem}
+button,select,input{font:inherit}button,select{border:1px solid var(--line);border-radius:8px;padding:.55rem .8rem;background:var(--bg);color:var(--ink)}
+button{cursor:pointer}button[aria-pressed=true]{background:var(--accent);color:#10151c;border-color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.graph{margin:1.2rem 0}.graph span{color:var(--muted)}
+.result{border-left:3px solid var(--accent);padding:.6rem 1rem;background:var(--bg);margin:1rem 0;min-height:3rem}
+pre{overflow:auto;background:var(--bg);padding:1rem;border-radius:8px}li{margin:.3rem 0}
+.meter{background:var(--bg);height:.6rem;position:relative;border-radius:1rem;margin:1rem 0}.interval{position:absolute;height:100%;background:var(--accent);border-radius:1rem}.point{position:absolute;height:180%;width:2px;top:-40%;background:white}
+.scenarios{max-height:17rem;overflow:auto;padding:.5rem 1rem;background:var(--bg);border-radius:8px}.scenarios label{display:block;margin:.25rem 0}
+</style>
+</head>
+<body>
+<header><a href="../">← Cuhawk’s Blog</a></header>
+<main>
+<h1>Engineering demos</h1>
+<p>Explore JavaScript data flow, agent reliability, cloud permissions, and model routing in your browser.</p>
+<nav aria-label="Engineering demos">
+<button data-demo="astra" aria-pressed="true">ASTRA</button>
+<button data-demo="arl" aria-pressed="false">AgentReliabilityLab</button>
+<button data-demo="kube" aria-pressed="false">KubeBlast</button>
+<button data-demo="infer" aria-pressed="false">InferRoute</button>
+</nav>
+<article id="astra">
+<h2>JavaScript callgraph and taint trace</h2>
+<p>Follow a synthetic request through an asynchronous handler. Toggle validation to see where the trace clears.</p>
+<label><input type="checkbox" id="validate"> Validate the identifier before lookup</label>
+<div class="graph" id="ast-graph" aria-label="Callgraph"></div>
+<pre id="ast-code"></pre>
+<div class="result" id="ast-result" aria-live="polite"></div>
+</article>
+<article id="arl" hidden>
+<h2>Agent reliability and security</h2>
+<p>Toggle outcomes to see how the Wilson 95% confidence interval changes. Initial outcomes are simulated. Scenario IDs come from AgentReliabilityLab.</p>
+<div class="controls"><label for="category">Category</label><select id="category"><option value="all">All scenarios</option></select><button id="reset">Reset outcomes</button></div>
+<div id="arl-result" class="result" aria-live="polite"></div>
+<div class="meter" aria-hidden="true"><span class="interval"></span><span class="point"></span></div>
+<div id="scenarios" class="scenarios"></div>
+</article>
+<article id="kube" hidden>
+<h2>Cloud IAM to Kubernetes RBAC</h2>
+<p>Inspect a synthetic access review. Apply a control to remove a relationship from the effective permission path.</p>
+<div class="controls">
+<label><input type="checkbox" id="trust"> Restrict workload trust</label>
+<label><input type="checkbox" id="binding"> Narrow the Kubernetes binding</label>
+</div>
+<div class="graph" id="kube-graph" aria-label="Effective permission graph"></div>
+<div class="result" id="kube-result" aria-live="polite"></div>
+</article>
+<article id="infer" hidden>
+<h2>Deterministic routing and fallback</h2>
+<p>Change the request requirements or simulate an outage. Estimates and model names are illustrative.</p>
+<div class="controls">
+<label for="intent">Request</label><select id="intent"><option value="basic">Summarization</option><option value="reason">Complex reasoning</option><option value="private">Sensitive data</option></select>
+<label for="outage">Unavailable model</label><select id="outage"><option value="">None</option><option>Swift</option><option>Atlas</option><option>Local</option></select>
+<label for="budget">Budget per 1k tokens</label><select id="budget"><option value="6">6 credits</option><option value="3">3 credits</option><option value="1">1 credit</option></select>
+</div>
+<div class="result" id="infer-result" aria-live="polite"></div>
+<ol id="route-trace"></ol>
+</article>
+</main>
+<script id="scenario-data" type="application/json">[{"id":"authz-external-approval-granted","category":"human_approval"},{"id":"authz-privileged-denied","category":"authorization"},{"id":"authz-read-allowed","category":"authorization"},{"id":"authz-write-in-scope","category":"authorization"},{"id":"authz-write-out-of-scope","category":"authorization"},{"id":"cost-bounded-retries","category":"cost"},{"id":"cost-token-budget","category":"cost"},{"id":"cost-within-budget","category":"cost"},{"id":"demo-hallucinated-customer","category":"hallucination"},{"id":"demo-happy-lookup","category":"happy_path"},{"id":"demo-injection-exfiltration","category":"prompt_injection"},{"id":"demo-unauthorized-delete","category":"authorization"},{"id":"fail-429-backoff","category":"tool_failure"},{"id":"fail-500-exhausts-retries-honest","category":"tool_failure"},{"id":"fail-500-transient-recovered","category":"tool_failure"},{"id":"fail-delayed-result","category":"tool_failure"},{"id":"fail-empty-result","category":"tool_failure"},{"id":"fail-malformed-json","category":"tool_failure"},{"id":"fail-partial-result","category":"tool_failure"},{"id":"fail-permission-denied","category":"tool_failure"},{"id":"fail-timeout-retry-success","category":"tool_failure"},{"id":"halluc-no-phantom-citations","category":"hallucination"},{"id":"halluc-order-missing-schema","category":"hallucination"},{"id":"happy-calc-add","category":"happy_path"},{"id":"happy-currency-convert","category":"happy_path"},{"id":"happy-customer-and-order","category":"happy_path"},{"id":"happy-email-summary-approval","category":"happy_path"},{"id":"happy-order-status","category":"happy_path"},{"id":"happy-output-schema","category":"happy_path"},{"id":"happy-two-customer-summary","category":"happy_path"},{"id":"hitl-delete-approved-fullflow","category":"human_approval"},{"id":"hitl-deny-stops","category":"human_approval"},{"id":"hitl-prepare-only-no-execute","category":"human_approval"},{"id":"hitl-timeout-aborts","category":"human_approval"},{"id":"hitl-transfer-approved","category":"human_approval"},{"id":"injection-fake-system-message","category":"prompt_injection"},{"id":"injection-indirect-via-tool-output","category":"prompt_injection"},{"id":"injection-multi-step-attack","category":"prompt_injection"},{"id":"injection-override-constraints-transfer","category":"prompt_injection"},{"id":"injection-reveal-secrets","category":"prompt_injection"},{"id":"latency-within-budget","category":"latency"},{"id":"model-backend-unavailable-retry","category":"model_failure"},{"id":"model-invalid-structured-output","category":"model_failure"},{"id":"model-rate-limit-persistent","category":"model_failure"},{"id":"model-truncated-response","category":"model_failure"},{"id":"retrieval-conflicting-evidence","category":"retrieval_failure"},{"id":"retrieval-irrelevant-docs","category":"retrieval_failure"},{"id":"retrieval-missing-source","category":"retrieval_failure"},{"id":"retrieval-poisoned-ranking-unauthorized-tool","category":"prompt_injection"},{"id":"retrieval-stale-doc","category":"retrieval_failure"},{"id":"routing-avoid-unneeded-tool","category":"routing"},{"id":"routing-billing-distinction","category":"routing"},{"id":"routing-multi-entity","category":"routing"},{"id":"routing-no-tool-needed","category":"routing"},{"id":"routing-order-not-customer","category":"routing"},{"id":"secret-not-in-output","category":"secret_handling"},{"id":"secret-not-in-state","category":"secret_handling"},{"id":"secret-not-in-tool-args","category":"secret_handling"},{"id":"state-duplicate-event-idempotency","category":"state_recovery"},{"id":"state-interrupted-checkpoint","category":"state_recovery"},{"id":"state-missing-resilience","category":"state_recovery"},{"id":"state-stale-refresh","category":"state_recovery"}]</script>
+<script>
+'use strict';
+const find = id => document.getElementById(id);
+for (const tab of document.querySelectorAll('[data-demo]')) {
+  tab.addEventListener('click', () => {
+    for (const other of document.querySelectorAll('[data-demo]')) {
+      const active = tab === other;
+      other.setAttribute('aria-pressed', String(active));
+      find(other.dataset.demo).hidden = !active;
+    }
+  });
+}
+function graph(id, nodes, selected, choose) {
+  const container = find(id);
+  const hadFocus = container.contains(document.activeElement);
+  container.replaceChildren();
+  nodes.forEach((name, index) => {
+    if (index) {
+      const arrow = document.createElement('span');
+      arrow.textContent = '→';
+      arrow.setAttribute('aria-hidden', 'true');
+      container.append(arrow);
+    }
+    const button = document.createElement('button');
+    button.textContent = name;
+    button.setAttribute('aria-pressed', String(index === selected));
+    button.addEventListener('click', () => choose(index));
+    container.append(button);
+    if (hadFocus && index === selected) button.focus();
+  });
+}
+let astNode = 0;
+function renderAst() {
+  const validated = find('validate').checked;
+  const snippets = ['handle(request)', 'const id = request.query.id',
+    validated ? 'const key = validateId(id); await lookup(key)' : 'await lookup(id)',
+    'db.lookup(key)'];
+  const details = ['Entry into the async request handler.',
+    'The query identifier is untrusted input.',
+    validated ? 'The validator accepts only bounded numeric identifiers before the await edge.' :
+      'The taint label follows the identifier across the await edge.',
+    validated ? 'The lookup receives a validated identifier.' :
+      'The lookup receives an unvalidated identifier. Review the lookup boundary.'];
+  graph('ast-graph', ['Handler', 'Query source', 'Async call', 'Lookup sink'], astNode,
+    index => { astNode = index; renderAst(); });
+  find('ast-code').textContent = snippets[astNode];
+  find('ast-result').textContent = details[astNode];
+}
+find('validate').addEventListener('change', renderAst);
+renderAst();
+
+const scenarios = JSON.parse(find('scenario-data').textContent);
+const initialFailures = new Set(scenarios.filter((_, index) => index % 9 === 0).map(row => row.id));
+let failures = new Set(initialFailures);
+for (const category of [...new Set(scenarios.map(row => row.category))].sort()) {
+  find('category').add(new Option(category.replaceAll('_', ' '), category));
+}
+const percentage = fraction => (100 * fraction).toFixed(1) + '%';
+function renderArl() {
+  const category = find('category').value;
+  const visible = scenarios.filter(row => category === 'all' || row.category === category);
+  const n = visible.length;
+  const passed = visible.filter(row => !failures.has(row.id)).length;
+  const share = passed / n;
+  const z = 1.95996398454;
+  const denominator = 1 + z * z / n;
+  const center = (share + z * z / (2 * n)) / denominator;
+  const margin = z * Math.sqrt(share * (1 - share) / n + z * z / (4 * n * n)) / denominator;
+  const lower = Math.max(0, center - margin);
+  const upper = Math.min(1, center + margin);
+  find('arl-result').textContent = `${passed} of ${n} passed (${percentage(share)}). Wilson 95% CI ${percentage(lower)}–${percentage(upper)}.`;
+  document.querySelector('.interval').style.left = percentage(lower);
+  document.querySelector('.interval').style.width = percentage(upper - lower);
+  document.querySelector('.point').style.left = percentage(share);
+  const list = find('scenarios');
+  if (list.contains(document.activeElement)) return;
+  list.replaceChildren();
+  for (const row of visible) {
+    const label = document.createElement('label');
+    const box = document.createElement('input');
+    box.type = 'checkbox';
+    box.checked = !failures.has(row.id);
+    box.addEventListener('change', () => {
+      if (box.checked) failures.delete(row.id);
+      else failures.add(row.id);
+      renderArl();
+    });
+    label.append(box, ' ' + row.id);
+    list.append(label);
+  }
+}
+find('category').addEventListener('change', renderArl);
+find('reset').addEventListener('click', () => { failures = new Set(initialFailures); renderArl(); });
+renderArl();
+
+let kubeNode = 0;
+function renderKube() {
+  const names = ['Cloud identity'];
+  const details = ['The workload starts with a federated identity.'];
+  if (!find('trust').checked) {
+    names.push('Cloud IAM role', 'Cluster identity');
+    details.push('The role trusts the workload identity.', 'Cloud-to-cluster mapping grants a Kubernetes identity.');
+    if (!find('binding').checked) {
+      names.push('Broad RBAC role');
+      details.push('The binding reaches a role with broad cluster permissions.');
+    }
+  }
+  kubeNode = Math.min(kubeNode, names.length - 1);
+  graph('kube-graph', names, kubeNode, index => { kubeNode = index; renderKube(); });
+  find('kube-result').textContent = details[kubeNode] +
+    (names.length < 4 ? ' The broad RBAC role is unreachable.' : ' The broad RBAC role is reachable.');
+}
+for (const id of ['trust', 'binding']) find(id).addEventListener('change', renderKube);
+renderKube();
+
+const models = [
+  {name:'Swift', cost:1, reasoning:false, local:false},
+  {name:'Local', cost:3, reasoning:true, local:true},
+  {name:'Atlas', cost:6, reasoning:true, local:false}
+];
+function renderInfer() {
+  const intent = find('intent').value;
+  const outage = find('outage').value;
+  const budget = Number(find('budget').value);
+  let chosen = null;
+  find('route-trace').replaceChildren();
+  for (const model of models) {
+    const reason = model.cost > budget ? 'over budget' :
+      intent === 'private' && !model.local ? 'requires local processing' :
+      intent === 'reason' && !model.reasoning ? 'reasoning tier unavailable' :
+      model.name === outage ? 'unavailable; try fallback' : 'selected';
+    const step = document.createElement('li');
+    step.textContent = `${model.name} · ${model.cost} credits · ${reason}`;
+    find('route-trace').append(step);
+    if (reason === 'selected') { chosen = model; break; }
+  }
+  find('infer-result').textContent = chosen ? `Routed to ${chosen.name}.` : 'No eligible model is available.';
+}
+for (const id of ['intent', 'outage', 'budget']) find(id).addEventListener('change', renderInfer);
+renderInfer();
+</script>
+</body>
+</html>
