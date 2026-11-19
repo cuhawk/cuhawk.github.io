@@ -22,6 +22,7 @@ Hello! I am Cuhawk, also known as Soural. This blog chronicles my journey throug
 
 #### What You’ll Find Here
 
+- [Interactive Demos](demos/index.html)
 - **Bug Bounty Work**: Insights into my bug hunting experiences and methodologies.
 - **Development Projects**: Detailed looks at my game development and security tools.
 - **Certifications Journey**: Updates and resources on my certification pursuits.
